@@ -154,9 +154,33 @@ public String updateDoctor(int eid) {
 		switch (ch) {
 		case 1:
 			ps = conn.prepareStatement("update admin set ename=? where eid=?");
-			System.out.println("Enter Employee Name ?");
+			System.out.println("Enter Employee Name ");
 			String name = sc.next();
 			ps.setString(1, name);
+			ps.setInt(2, eid);
+			n = ps.executeUpdate();
+			break;
+		case 2:
+			ps = conn.prepareStatement("update admin set esalary=? where eid=?");
+			System.out.println("Enter Employee Salary ");
+			int sal = sc.nextInt();
+			ps.setInt(1, sal);
+			ps.setInt(2, eid);
+			n = ps.executeUpdate();
+			break;
+		case 3:
+			ps = conn.prepareStatement("update admin set edoj=? where eid=?");
+			System.out.println("Enter Employee DOJ ");
+			String dojj = sc.next();
+			ps.setString(1, dojj);
+			ps.setInt(2, eid);
+			n = ps.executeUpdate();
+			break;
+		case 4:
+			ps = conn.prepareStatement("update admin set epw=? where eid=?");
+			System.out.println("Set New Password For Employee ");
+			String pww = sc.next();
+			ps.setString(1,pww);
 			ps.setInt(2, eid);
 			n = ps.executeUpdate();
 			break;
@@ -176,6 +200,54 @@ public String updateDoctor(int eid) {
 	}
 	return result;
 }
+
+
+public String register(Users u) {
+	
+	String message = null;
+	try {
+		ps = conn.prepareStatement("insert into users(username,password,type) values(?,?,?)");
+		ps.setString(1, u.getUsername());
+		ps.setString(2, u.getPassword());
+		ps.setString(3, u.getType());
+		int n = ps.executeUpdate();
+		if (n != 0) {
+			message = "SUCCESS : Details Registered..";
+		} else {
+			message = "ALERT : Enter Feilds In Proper Format...";
+		}
+		//con.close();
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}
+	return message;
+}
+
+
+public String deleteEmployee(int eid) {
+	
+	int n = 0;
+	String msg = null;
+	try {
+		ps = conn.prepareStatement("delete from admin where eid= ?");
+		ps.setInt(1, eid);
+		n = ps.executeUpdate();
+
+		if (n != 0) {
+			msg = "SUCCESS : Employee details Deleted";
+		} else {
+			msg = "ALERT : Enter Feilds In Proper Format...";
+		}
+	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}
+	return msg;
+
+}
+
+
 	
 }
 

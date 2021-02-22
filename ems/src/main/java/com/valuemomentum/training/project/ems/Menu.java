@@ -21,7 +21,7 @@ public class Menu {
 		System.out.println("-----------------------");
 		System.out.println("| 1.Add Employee        |");
 		System.out.println("| 2.View Employee       |");
-		System.out.println("| 3.View All Employee   |");
+		System.out.println("| 3.View All Employees   |");
 		System.out.println("| 4.Update Employee     |");
 		System.out.println("| 5.Delete Employee     |");
 		System.out.println("| 6.Back                |");
@@ -56,6 +56,13 @@ public class Menu {
 			ad.setEid(sc.nextInt());
 			String message = emsdaoimpl.updateDoctor(ad.getEid());
             System.out.println(message);
+			adminMenu();
+			break;
+		case 5:
+			System.out.println("Enter Deleting Employee Id ?");
+			ad.setEid(sc.nextInt());
+			String msg=emsdaoimpl.deleteEmployee(ad.getEid());
+			System.out.println(msg);
 			adminMenu();
 			break;
 		case 6:

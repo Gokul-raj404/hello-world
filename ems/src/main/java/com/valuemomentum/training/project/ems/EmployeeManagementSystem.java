@@ -18,13 +18,13 @@ public class EmployeeManagementSystem {
 		while (true) {
 			// try {
 			
-			System.out.println("******************************");
-			System.out.println("| EMPLOYEE MANAGEMENT SYSTEM |");
-			System.out.println("******************************");
+			System.out.println("***************************");
+			System.out.println("|    QUICK RECORDS (EMS)  |");
+			System.out.println("***************************");
 			System.out.println("|  1.  LOGIN              |");
-			System.out.println("|  2.  REGISTER                |");
-			System.out.println("|  3.  EXIT                  |");
-			System.out.println("******************************");
+			System.out.println("|  2.  REGISTER           |");
+			System.out.println("|  3.  EXIT               |");
+			System.out.println("***************************");
 			System.out.println();
 			System.out.println("Enter Your Choice ?");
 			int choice = sc.nextInt();
@@ -75,6 +75,42 @@ public class EmployeeManagementSystem {
 						System.out.println("Invalid username/password...");
 						System.out.println();
 					}
+					break;
+			case 2:
+				System.out.println("Enter User Name ?");
+				String namee = sc.next();
+
+				while (!Pattern.matches("[a-zA-Z]{1,14}", namee)) {
+					System.err.println("please enter the valid username with in the range of 1-14 ");
+					// name = sc.next();
+				}
+				u.setUsername(namee);
+
+				System.out.println("Enter Password ?");
+				String passwordd = sc.next();
+				while (!Pattern.matches("[0-9a-zA-Z]{1,8}", passwordd)) {
+
+					System.err.println("please enter valid password max of 8 characters");
+					// password = sc.next();
+				}
+				u.setPassword(passwordd);
+
+				System.out.println("Enter type?");
+				u.setType(sc.next());
+
+				String message = emsdaoi.register(u);
+				System.out.println(message);
+				
+				break;
+			case 3:
+				System.out.println("-------THANK YOU--------");
+				System.exit(0);
+				break;
+			default:
+				System.out.println("ALERT : Choose from range 1-3.");
+
+				
+				
 				
 			}
 		}
